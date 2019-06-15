@@ -1,0 +1,129 @@
+@import "~katex/dist/katex.min.css";
+@import "~firacode/distr/fira_code.css";
+@import "~prismjs/themes/prism-okaidia.css";
+@import "~prismjs/plugins/line-numbers/prism-line-numbers.css";
+
+code {
+    font-family: "Fira Code", monospace;
+}
+
+table {
+    margin: 0 auto 1em;
+}
+
+td, th {
+    border: 1px solid black;
+    padding: 4px;
+}
+
+tr:nth-child(even) {
+    background-color: lightgrey;
+}
+
+th {
+    text-align: center;
+}
+
+li:before {
+    content: "-";
+}
+
+img {
+    display: block;
+    margin: 0 auto;
+}
+
+pre[class*="language-"] {
+    font-size: 0.8em;
+}
+
+div.code-toolbar {
+    position: relative;
+}
+
+div.code-toolbar > .toolbar {
+    position: absolute;
+    bottom: 0.5em;
+    right: 0.5em;
+}
+
+div.code-toolbar > .toolbar .toolbar-item {
+    display: inline-block;
+}
+
+div.code-toolbar > .toolbar a {
+    cursor: pointer;
+}
+
+div.code-toolbar > .toolbar button {
+    background: none;
+    border: 0;
+    color: inherit;
+    font: inherit;
+    line-height: normal;
+    overflow: visible;
+    padding: 0;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+div.code-toolbar > .toolbar a,
+div.code-toolbar > .toolbar button,
+div.code-toolbar > .toolbar span {
+    color: #bbb;
+    font-size: 0.85em;
+    padding: .2em .6em;
+    background: dimgrey;
+}
+
+div.code-toolbar > .toolbar a:hover,
+div.code-toolbar > .toolbar a:focus,
+div.code-toolbar > .toolbar button:hover,
+div.code-toolbar > .toolbar button:focus,
+div.code-toolbar > .toolbar span:hover,
+div.code-toolbar > .toolbar span:focus {
+    color: inherit;
+    text-decoration: none;
+}
+
+@tailwind base;
+@tailwind components;
+
+.card {
+    @apply rounded shadow-lg bg-white mb-2 px-6 py-4
+}
+
+.card-heading {
+    @apply font-bold text-xl mb-2
+}
+
+.modal {
+    @apply card shadow-2xl pointer-events-auto
+}
+
+.form-field {
+    @apply bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight
+}
+
+.form-field:focus {
+    @apply outline-none bg-white border-gray-800
+}
+
+.form-button {
+    @apply bg-blue-500 text-white font-bold mt-2 py-1 px-2 rounded
+}
+
+.form-button:hover {
+    @apply bg-blue-700
+}
+
+.form-button:focus {
+    @apply outline-none shadow-outline
+}
+
+.disabled-button {
+    @apply opacity-50 cursor-not-allowed
+}
+
+@tailwind utilities;

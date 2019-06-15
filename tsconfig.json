@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+	"baseUrl": ".",
+	"paths": { "*": ["types/*"] },
+	"module": "ES6",
+	"target": "es2018",
+	"sourceMap": true
+  },
+  "exclude": [
+	"node_modules"
+  ]
+}

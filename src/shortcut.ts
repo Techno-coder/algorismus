@@ -8,7 +8,7 @@ export function register_shortcuts() {
         setTimeout(() => {
             field.setSelectionRange(0, field.value.length);
             field.focus()
-        }, 0);
+        }, 10);
     });
 }
 

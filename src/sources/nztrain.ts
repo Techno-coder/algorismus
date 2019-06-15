@@ -2,6 +2,7 @@ import {Source} from "../source";
 import {Auxiliary, Problem} from "../problem";
 import * as utility from "../utility";
 import * as katex from "katex";
+import {resource_image} from "../request";
 
 const DOMAIN_ROOT = "https://train.nzoi.org.nz";
 const SECTIONS = ["STATEMENT", "INPUT", "OUTPUT", "HINT", "EXPLANATION", "SUBTASK"];
@@ -14,6 +15,12 @@ export class NZTrain implements Source {
         utility.remove_elements_by_tag(statement, "script");
         utility.space_paragraphs(statement);
         utility.set_resource_links(statement, DOMAIN_ROOT);
+
+        let image_elements = statement.getElementsByTagName("img");
+        for (let index = 0; index < image_elements.length; ++index) {
+            image_elements[index].id = `image-${index}`;
+            resource_image(image_elements[index] as HTMLImageElement);
+        }
 
         let code_elements = statement.getElementsByTagName("code");
         for (let element of code_elements) {

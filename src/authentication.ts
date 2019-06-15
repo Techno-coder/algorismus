@@ -1,7 +1,7 @@
 import * as Cookies from "js-cookie";
 import {hide_all_modals} from "./shortcut";
 
-const SESSION_IDENTIFIER_KEY = "_session_id";
+const SESSION_IDENTIFIER_KEY = "session_identifier";
 
 export function on_session_cookie_save() {
     let field_element = document.getElementById("session_cookie_field");

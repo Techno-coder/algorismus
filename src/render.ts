@@ -32,14 +32,14 @@ export function render_samples(samples: Sample[]) {
         let sample = samples[index];
         let element = `
                 <div class="card">
-                    <div class="font-bold text-xl mb-2">Sample Case - ${index}</div>
+                    <div class="card-heading">Sample Case - ${index}</div>
                     <div class="flex flex-row">
                         <div class="w-1/2 mr-2">
-                            <div class="text-lg mb-2">Input</div>
+                            <div class="text-bold mb-2">Input</div>
                             <pre><code class="language-none">${sample.input}</code></pre>
                         </div>
                         <div class="w-1/2 ml-2">
-                            <div class="text-lg mb-2">Output</div>
+                            <div class="text-bold mb-2">Output</div>
                             <pre><code class="language-none">${sample.output}</code></pre>
                         </div>
                     </div>

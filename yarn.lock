@@ -1159,11 +1159,6 @@ findup-sync@^2.0.0:
     micromatch "^3.0.4"
     resolve-dir "^1.0.1"
 
-firacode@^1.206.0:
-  version "1.206.0"
-  resolved "https://registry.yarnpkg.com/firacode/-/firacode-1.206.0.tgz#00a85b70f731bb29d968f4fa583c6b50049b7849"
-  integrity sha512-+Gw/rm0O8vuAvANMWOFgZNJqPHZN1nYQpv4ptUjfwJLMDTzcLOFVK73LKaTC/nXRFUDV9dRi8kBQilhEXVVI+A==
-
 flush-write-stream@^1.0.0:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/flush-write-stream/-/flush-write-stream-1.1.1.tgz#8dd7d873a1babc207d94ead0c2e0e44276ebf2e8"

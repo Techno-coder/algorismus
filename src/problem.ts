@@ -7,6 +7,7 @@ export class Problem {
     hints: string;
     explanation: string;
     samples: Sample[];
+    constraints: string;
     subtasks: string;
 }
 

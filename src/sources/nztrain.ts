@@ -5,7 +5,7 @@ import * as katex from "katex";
 import {resource_image} from "../request";
 
 const DOMAIN_ROOT = "https://train.nzoi.org.nz";
-const SECTIONS = ["STATEMENT", "INPUT", "OUTPUT", "HINT", "EXPLANATION", "SUBTASK"];
+const SECTIONS = ["STATEMENT", "INPUT", "OUTPUT", "HINT", "EXPLANATION", "SUBTASK", "CONSTRAINT"];
 
 export class NZTrain implements Source {
     process(document: Document): Problem {
@@ -63,15 +63,28 @@ function match_auxiliary(problem: Problem, container: HTMLElement) {
 
 function match_sections(problem: Problem, statement_string: string) {
     let current_section = SECTIONS[0];
-    for (let section of SECTIONS) {
-        let segments = statement_string.split(utility.match_heading_element(section));
-        if (segments.length >= 2) {
-            match_section(problem, current_section, segments[0]);
-            statement_string = segments[1];
-            current_section = section;
+    let section_occurred = true;
+    while (section_occurred) {
+        section_occurred = false;
+
+        let next_section = null;
+        let best_segments = null;
+        for (let section of SECTIONS) {
+            let segments = statement_string.split(utility.match_heading_element(section));
+            if (!best_segments || segments[0].length < best_segments[0].length) {
+                best_segments = segments;
+                next_section = section;
+            }
         }
+
+        if (best_segments.length >= 2) {
+            statement_string = best_segments[1];
+            section_occurred = true;
+        }
+
+        match_section(problem, current_section, best_segments[0]);
+        current_section = next_section;
     }
-    match_section(problem, current_section, statement_string);
 }
 
 function match_section(problem: Problem, current_section: string, segment: string) {
@@ -81,6 +94,7 @@ function match_section(problem: Problem, current_section: string, segment: strin
     if (current_section == SECTIONS[3]) problem.hints = segment;
     if (current_section == SECTIONS[4]) problem.explanation = segment;
     if (current_section == SECTIONS[5]) problem.subtasks = segment;
+    if (current_section == SECTIONS[6]) problem.constraints = segment;
 }
 
 function space_sections(problem: Problem) {

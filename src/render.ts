@@ -8,6 +8,7 @@ export function render_problem(problem: Problem) {
     set_and_expose_identifier("output", problem.output);
     set_and_expose_identifier("hints", problem.hints);
     set_and_expose_identifier("explanation", problem.explanation);
+    set_and_expose_identifier("constraints", problem.constraints);
     set_and_expose_identifier("subtasks", problem.subtasks);
 
     document.getElementById("auxiliary_card").hidden = true;

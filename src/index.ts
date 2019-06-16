@@ -30,8 +30,9 @@ export function register_button(identifier: string, callback: any) {
 export function register_submission() {
     let submission_file = document.getElementById("submission_file") as HTMLInputElement;
     submission_file.onchange = () => {
-        on_submit(submission_file.value);
-        submission_file.value = null;
+        if (submission_file.files.length > 0) {
+            on_submit(submission_file.files[0]);
+            submission_file.value = null;
+        }
     };
 }
-

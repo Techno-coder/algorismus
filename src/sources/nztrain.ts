@@ -2,10 +2,13 @@ import {Source} from "../source";
 import {Auxiliary, Problem} from "../problem";
 import * as utility from "../utility";
 import * as katex from "katex";
-import {resource_image} from "../request";
+import {resource_image} from "../bypass";
+import {post_submission} from "../submit";
 
 const DOMAIN_ROOT = "https://train.nzoi.org.nz";
 const SECTIONS = ["STATEMENT", "INPUT", "OUTPUT", "HINT", "EXPLANATION", "SUBTASK", "CONSTRAINT"];
+
+const LANGUAGE_OPTION_CPLUSPLUS = "5";
 
 export class NZTrain implements Source {
     process(document: Document): Problem {
@@ -46,8 +49,11 @@ export class NZTrain implements Source {
         return problem;
     }
 
-    submit(base_link: string, file_data: string) {
-        // TODO
+    submit(base_link: string, file_data: File) {
+        let form_data = new FormData();
+        form_data.set("submission[language_id]", LANGUAGE_OPTION_CPLUSPLUS);
+        form_data.set("submission[source_file]", file_data);
+        post_submission(base_link + "/submit", form_data);
     }
 }
 

@@ -1,9 +1,8 @@
-import {get_session_identifier} from "./authentication";
 import {NZTrain} from "./sources/nztrain";
 import {render_problem} from "./render";
 import {hide_all_modals} from "./shortcut";
-
-const CORS_ROUTER = "https://technocoder-cors-bypass.herokuapp.com/";
+import {CORS_ROUTER, get_request_metadata} from "./bypass";
+import {get_authenticity_token} from "./submit";
 
 let problem_link = null;
 
@@ -32,6 +31,7 @@ export function on_open() {
 
             let title = document.getElementById("information_body");
             (title as HTMLAnchorElement).href = link;
+            get_authenticity_token(link);
 
             status.textContent = "";
             problem_link = link;
@@ -42,34 +42,8 @@ export function on_open() {
     button.classList.add("disabled-button");
 }
 
-export function on_submit(file_data: string) {
+export function on_submit(file_data: File) {
     let source = new NZTrain();
     source.submit(problem_link, file_data);
 }
 
-export function resource_image(element: HTMLImageElement) {
-    let image_identifier = element.id;
-    let image_source = element.src;
-    element.src = "";
-
-    fetch(CORS_ROUTER + image_source, get_request_metadata())
-        .then((response) => {
-            if (!response.ok) throw Error(response.statusText);
-            return response.blob();
-        })
-        .then((data) => {
-            let element = document.getElementById(image_identifier);
-            (element as HTMLImageElement).src = URL.createObjectURL(data);
-        });
-}
-
-export function get_request_metadata(): RequestInit {
-    let request: RequestInit = {};
-    if (get_session_identifier() == null) {
-        return request;
-    }
-
-    request.credentials = "include";
-    request.headers = {"Forward-Cookie": "_session_id=" + get_session_identifier()};
-    return request as RequestInit;
-}

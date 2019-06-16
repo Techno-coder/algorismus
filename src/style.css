@@ -6,10 +6,6 @@ code {
     font-family: Consolas, Monaco, monospace;
 }
 
-h1, h2, h3, h4, h5, h6 {
-    font-weight: bold;
-}
-
 table {
     margin: 0 auto 1em;
 }
@@ -136,6 +132,10 @@ ol, ul {
 
 li {
     list-style-type: disc;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: bold;
 }
 
 @tailwind utilities;

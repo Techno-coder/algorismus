@@ -42,12 +42,23 @@ export function remove_last_break(content?: string): string | null {
 export function set_resource_links(document: Element, root: string) {
     set_resource_type(document, root, "img", "src");
     set_resource_type(document, root, "a", "href");
+    expand_anchor_links(document);
 }
 
 export function set_resource_type(document: Element, root: string, tag: string, attribute: string) {
     let elements = document.getElementsByTagName(tag);
     for (let element of elements) {
-        let canonical_link = root + element.getAttribute(attribute);
+        let canonical_link = element.getAttribute(attribute);
+        if (canonical_link.startsWith('/')) {
+            canonical_link = root + canonical_link;
+        }
         element.setAttribute(attribute, canonical_link);
+    }
+}
+
+export function expand_anchor_links(document: Element) {
+    let elements = document.getElementsByTagName("a");
+    for (let element of elements) {
+        element.setAttribute("target", "_blank");
     }
 }

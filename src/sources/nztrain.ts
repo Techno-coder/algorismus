@@ -44,7 +44,6 @@ export class NZTrain implements Source {
         match_auxiliary(problem, main_container);
         match_sections(problem, statement.innerHTML);
         match_samples(problem, document);
-        space_sections(problem);
 
         return problem;
     }
@@ -101,14 +100,6 @@ function match_section(problem: Problem, current_section: string, segment: strin
     if (current_section == SECTIONS[4]) problem.explanation = segment;
     if (current_section == SECTIONS[5]) problem.subtasks = segment;
     if (current_section == SECTIONS[6]) problem.constraints = segment;
-}
-
-function space_sections(problem: Problem) {
-    problem.statement = utility.remove_last_break(problem.statement);
-    problem.input = utility.remove_last_break(problem.input);
-    problem.output = utility.remove_last_break(problem.output);
-    problem.hints = utility.remove_last_break(problem.hints);
-    problem.explanation = utility.remove_last_break(problem.explanation);
 }
 
 function match_samples(problem: Problem, document: Document) {

@@ -28,15 +28,8 @@ export function find_first_element(container: HTMLElement, content: string): num
 export function space_paragraphs(container: Element) {
     let paragraphs = container.getElementsByTagName("p");
     for (let element of paragraphs) {
-        element.outerHTML += "<br>";
+        element.classList.add("my-2");
     }
-}
-
-export function remove_last_break(content?: string): string | null {
-    if (content == null) return null;
-    let index = content.lastIndexOf("<br>");
-    if (index != -1) return content.substring(0, index);
-    return content;
 }
 
 export function set_resource_links(document: Element, root: string) {

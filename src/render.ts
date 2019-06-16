@@ -35,11 +35,11 @@ export function render_samples(samples: Sample[]) {
                     <div class="card-heading">Sample Case - ${index}</div>
                     <div class="flex flex-row">
                         <div class="w-1/2 mr-2">
-                            <div class="text-bold mb-2">Input</div>
+                            <div class="font-bold mb-2">Input</div>
                             <pre><code class="language-none">${sample.input}</code></pre>
                         </div>
                         <div class="w-1/2 ml-2">
-                            <div class="text-bold mb-2">Output</div>
+                            <div class="font-bold mb-2">Output</div>
                             <pre><code class="language-none">${sample.output}</code></pre>
                         </div>
                     </div>

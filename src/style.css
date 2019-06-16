@@ -106,7 +106,7 @@ div.code-toolbar > .toolbar span:focus {
 
 @screen lg {
     .card-heading {
-        @apply text-3xl
+        @apply text-2xl
     }
 }
 

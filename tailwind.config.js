@@ -1,9 +1,9 @@
 module.exports = {
 	theme: {
 		screens: {
-			'sm': '640px',
-			'md': '768px',
-			'lg': '1024px',
+			'sm': '640pt',
+			'md': '768pt',
+			'lg': '1024pt',
 		},
 		minWidth: {
 			xs: '20rem',

@@ -55,15 +55,15 @@
 			</div>
 			<input id="submission_file" type="file" hidden/>
 		</div>
-		<div class="card text-center">Press <b>?</b> for help</div>
+		<div id="help_activation" class="card text-center">Press <b>?</b> for help</div>
 	</div>
 </div>
 <div class="flex justify-center items-center fixed w-screen h-screen pointer-events-none">
 	<div id="help_modal" class="modal sm:min-w-sm">
 		<div class="card-heading">Help</div>
-		<p><code>?</code> - Help</p>
-		<p><code>A</code> - Authenticate</p>
-		<p><code>O</code> - Open Problem</p>
+		<p id="help_help"><code>?</code> - Help</p>
+		<p id="help_authenticate"><code>A</code> - Authenticate</p>
+		<p id="help_open_problem"><code>O</code> - Open Problem</p>
 	</div>
 	<div id="authenticate_modal" class="modal sm:min-w-lg" hidden>
 		<div class="card-heading">Authenticate - NZTrain</div>

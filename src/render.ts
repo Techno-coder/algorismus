@@ -28,6 +28,7 @@ export function render_problem(problem: Problem) {
 }
 
 export function render_samples(samples: Sample[]) {
+    document.getElementById("sample_cases").innerHTML = "";
     for (let index in samples) {
         let sample = samples[index];
         let element = `

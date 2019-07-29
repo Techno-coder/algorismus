@@ -22,3 +22,27 @@ export class Auxiliary {
     memory_limit: string;
     time_limit: string;
 }
+
+export class SubmissionStub {
+    link: string;
+    date: string;
+    score: number | null;
+}
+
+export class Submission {
+    stub: SubmissionStub;
+    test_sets: TestSet[];
+    source: string;
+}
+
+export class TestSet {
+    name: string;
+    test_cases: TestCase[];
+}
+
+export class TestCase {
+    time: string;
+    memory: string;
+    result: string;
+    score: number | null;
+}

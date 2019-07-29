@@ -1,10 +1,18 @@
-import {NZTrain} from "./sources/nztrain";
-import {render_problem} from "./render";
+import {render_problem} from "./render/problem";
 import {hide_all_modals} from "./shortcut";
 import {CORS_ROUTER, get_request_metadata} from "./bypass";
 import {get_authenticity_token} from "./submit";
+import {notify_submission, render_submission_stubs} from "./render/submission";
+import {NZTrain} from "./sources/nztrain/source";
+import {Source} from "./source";
+import {Problem} from "./problem";
 
-let problem_link = null;
+let source: Source | null = null;
+let problem: Problem | null = null;
+let problem_link: string | null = null;
+let submissions_timer: number | null = null;
+
+const SUBMISSION_TIMER_INTERVAL = 3000;
 
 export function on_open() {
     let status = document.getElementById("open_status");
@@ -22,8 +30,8 @@ export function on_open() {
             let problem_document = parser.parseFromString(data, "text/html");
 
             try {
-                let source = new NZTrain;
-                let problem = source.process(problem_document);
+                source = new NZTrain();
+                problem = source.process(problem_document);
                 render_problem(problem);
             } catch {
                 throw Error("Failed to parse problem. Are you authenticated?");
@@ -36,6 +44,8 @@ export function on_open() {
             status.textContent = "";
             problem_link = link;
             hide_all_modals();
+
+            load_submissions(false);
         })
         .catch((error) => document.getElementById("open_status").textContent = error)
         .finally(() => button.classList.remove("disabled-button"));
@@ -43,7 +53,24 @@ export function on_open() {
 }
 
 export function on_submit(file_data: File) {
-    let source = new NZTrain();
-    source.submit(problem_link, file_data);
+    source.submit(problem_link, file_data)
+        .then(() => load_submissions(true));
+}
+
+export function load_submissions(notify: boolean) {
+    if (submissions_timer != null) clearTimeout(submissions_timer);
+    let submission_stubs = source.submissions(problem_link);
+
+    submission_stubs.then((stubs) => {
+        render_submission_stubs(stubs);
+        if (stubs.length == 0) return;
+        let latest_stub = stubs[0];
+
+        if (latest_stub.score == null) {
+            submissions_timer = setTimeout(load_submissions, SUBMISSION_TIMER_INTERVAL, notify);
+        } else if (notify) {
+            notify_submission(problem.name, latest_stub);
+        }
+    });
 }
 

@@ -1,5 +1,6 @@
-import {Problem, Sample} from "./problem";
+import {Problem, Sample} from "../problem";
 import * as Prism from "prismjs";
+import {clear_submission_stubs} from "./submission";
 
 export function render_problem(problem: Problem) {
     set_and_expose_identifier("information", problem.name);
@@ -24,6 +25,7 @@ export function render_problem(problem: Problem) {
         render_samples(problem.samples);
     }
 
+    clear_submission_stubs();
     Prism.highlightAll();
 }
 

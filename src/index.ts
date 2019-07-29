@@ -21,6 +21,8 @@ export function on_load() {
     register_button("open_button", on_open);
     register_button("session_cookie_save_button", on_session_cookie_save);
     register_submission();
+
+    Notification.requestPermission().then(() => null);
 }
 
 export function register_button(identifier: string, callback: any) {

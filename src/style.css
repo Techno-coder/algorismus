@@ -110,6 +110,14 @@ div.code-toolbar > .toolbar span:focus {
     }
 }
 
+.submission-stub {
+    @apply rounded bg-gray-100 mb-2 px-4 py-2 border border-gray-200 text-gray-800
+}
+
+.submission-stub:hover {
+    @apply border-gray-500
+}
+
 .modal {
     @apply card shadow-2xl pointer-events-auto
 }

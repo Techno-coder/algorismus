@@ -4,21 +4,16 @@ import {get_session_identifier} from "./authentication";
 const AUTHENTICITY_IDENTIFIER = "authenticity_token";
 let authenticity_token = null;
 
-export function post_submission(link_endpoint: string, form_data: FormData) {
+export function post_submission(link_endpoint: string, form_data: FormData): Promise<void> {
     form_data.set(AUTHENTICITY_IDENTIFIER, authenticity_token);
 
     let metadata = get_request_metadata();
     metadata.body = form_data;
     metadata.method = "POST";
 
-    fetch(CORS_ROUTER + link_endpoint, metadata)
+    return fetch(CORS_ROUTER + link_endpoint, metadata)
         .then((response) => {
             if (!response.ok) throw Error(response.statusText);
-            return response.headers;
-        })
-        .then((headers) => {
-            let redirect = headers.get("X-Final-Url");
-            window.open(redirect, "_blank");
         });
 }
 

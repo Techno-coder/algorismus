@@ -9,7 +9,7 @@ import {submissions} from "./submissions";
 
 export const DOMAIN_ROOT = "https://train.nzoi.org.nz";
 
-const LANGUAGE_OPTION_CPLUSPLUS = "5";
+const LANGUAGE_OPTION_CPLUSPLUS = "11";
 
 export class NZTrain implements Source {
     process(document: Document): Problem {
